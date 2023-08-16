@@ -1,0 +1,32 @@
+class RecommendationEngine:
+    def __init__(self):
+        self.user_data = {}
+
+    def record_interaction(self, user_id, item_id):
+        if user_id not in self.user_data:
+            self.user_data[user_id] = []
+        self.user_data[user_id].append(item_id)
+
+    def recommend_items(self, user_id):
+        if user_id in self.user_data:
+            user_interactions = self.user_data[user_id]
+            recommended_items = self.get_similar_items(user_interactions)
+            return recommended_items
+        else:
+            return []
+
+    def get_similar_items(self, user_interactions):
+        # Implement collaborative filtering logic here
+        # Return a list of recommended items
+        pass
+
+
+# Usage
+engine = RecommendationEngine()
+
+engine.record_interaction("user1", "item1")
+engine.record_interaction("user1", "item2")
+engine.record_interaction("user2", "item2")
+
+recommended_items = engine.recommend_items("user1")
+print("Recommended items:", recommended_items)
